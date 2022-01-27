@@ -3,7 +3,8 @@
 
 ### 运行
 yarn add
-npm run [xxx];
+
+npm run [xxx]
 
 ### 相关博客
 [手写a,b,c三兄弟](https://juejin.cn/post/7056331404660965412)
