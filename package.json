@@ -1,0 +1,15 @@
+{
+  "name": "jest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "apply": "jest ./apply.test.js",
+    "bind": "jest ./bind.test.js",
+    "call": "jest ./call.test.js"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7"
+  }
+}
