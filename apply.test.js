@@ -1,14 +1,14 @@
 //apply
 Function.prototype.myApply = function (context, args = []) {
-  if (typeof this !== "function") {
-    throw new Error(this + "it's not callable");
+  if(typeof this !== 'function'){
+      throw new Error(this + "it's not callable");
   }
   //事实上args是支持一个类数组对象的，这里没有在进行细致的判断。
   //类数组对象：只要有一个 `length` 属性和`(0..length-1)`范围的整数属性。
-  if (!Array.isArray(args)) {
-    throw new TypeError("CreateListFromArrayLike called on non-object");
+  if(!Array.isArray(args)){
+      throw new TypeError('CreateListFromArrayLike called on non-object');
   }
-  context = context || globalThis;
+  context = Object(context || globalThis);
 
   const _symbol = Symbol();
   context[_symbol] = this;
@@ -32,4 +32,6 @@ test("apply", () => {
   //this指向测试
   let objTest = { test: 111 };
   expect(fn1.myApply(objTest)).toEqual(fn1.apply(objTest));
+  //toObject测试
+  expect(typeof fn1.myApply(1)).toBe(typeof fn1.apply(1))
 });

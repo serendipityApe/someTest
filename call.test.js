@@ -1,10 +1,10 @@
 //call
-Function.prototype.myCall = function (context, ...args) {
-  if (typeof this !== "function") {
-    throw new Error(this + "it's not callable");
+Function.prototype.myCall = function (context,...args) {
+  if(typeof this !== 'function'){
+      throw new Error(this + "it's not callable");
   }
   //args默认值为[],这里不用进行判断。
-  context = context || globalThis;
+  context = Object(context || globalThis);
   const _symbol = Symbol();
   context[_symbol] = this;
   let result = context[_symbol](...args);
@@ -27,4 +27,6 @@ test("apply", () => {
   //this指向测试
   let objTest = { test: 111 };
   expect(fn1.myCall(objTest)).toEqual(fn1.call(objTest));
+  //toObject测试
+  expect(typeof fn1.myCall(1)).toBe(typeof fn1.call(1))
 });

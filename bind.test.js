@@ -34,6 +34,12 @@ test("bind", () => {
   //this指向测试
   let objTest = { test: 111 };
   expect(fn1.myBind(objTest)()).toEqual(fn1.bind(objTest)());
+  //多次调用this指向测试
+  expect(fn1.myBind(objTest).apply({ test: 222 })).toEqual(
+    fn1.bind(objTest).apply({ test: 333 })
+  );
   //length测试
   expect(fn.myBind(this, 1).length).toBe(fn.bind(this, 1).length);
+  //ToObject测试
+  expect(typeof fn1.myBind(1)()).toBe(typeof fn1.bind(1)());
 });
