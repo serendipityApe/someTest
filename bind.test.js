@@ -34,7 +34,7 @@ test("bind", () => {
   //this指向测试
   let objTest = { test: 111 };
   expect(fn1.myBind(objTest)()).toEqual(fn1.bind(objTest)());
-  //多次调用this指向测试
+  //多次改变this指向测试
   expect(fn1.myBind(objTest).apply({ test: 222 })).toEqual(
     fn1.bind(objTest).apply({ test: 333 })
   );
